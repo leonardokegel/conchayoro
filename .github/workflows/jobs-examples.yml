@@ -7,9 +7,17 @@ jobs:
         steps:
             - name: criando um artefato para reuso
               run: echo "Full featured artifact" > build-result.txt
+            - uses: actions/upload-artifact@v2
+              with:
+                name: build-result
+                path: build-result.txt
     deploy:
         runs-on: ubuntu-latest
         needs: build
         steps:
+            - uses: actions/download-artifact@v2
+              with:
+                name: build-result
+                path: build-result.txt
             - name: usar o artefato criado anteriormente
               run: ls build-result.txt
