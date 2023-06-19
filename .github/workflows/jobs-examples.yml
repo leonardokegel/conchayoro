@@ -6,7 +6,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: exemplo de um comando inválido
-              run: ecko Hello, world! Build Failed.
+              run: echo Hello, world! Build Failed.
     deploy:
         runs-on: ubuntu-latest
         needs: build
