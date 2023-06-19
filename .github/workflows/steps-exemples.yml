@@ -1,0 +1,11 @@
+name: steps exemples
+on:
+    push
+jobs:
+    version:
+        runs-on: ubuntu-latest
+        steps:
+            - name: configuracao do node
+              uses: actions/setup-node@v3
+            - name: verificando a versão do node
+              run: node --version
