@@ -23,8 +23,8 @@ jobs:
         with:
           name: ebconfig
           path: |
-              ./frontend/.elasticbeanstalk/config.yml
-              ./frontend/Dockerrun.aws.json
+              frontend/.elasticbeanstalk/config.yml
+              frontend/Dockerrun.aws.json
 
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
