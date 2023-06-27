@@ -25,6 +25,7 @@ jobs:
           path: |
               frontend/.elasticbeanstalk/config.yml
               frontend/Dockerrun.aws.json
+
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
         with:
@@ -33,6 +34,7 @@ jobs:
       - run: docker tag $PROJECT_NAME/$MODULE_NAME:$TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$PROJECT_NAME/$MODULE_NAME:$TAG
       - run: aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
       - run: docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$PROJECT_NAME/$MODULE_NAME:$TAG
+
   deploy:
     runs-on: ubuntu-latest
     needs: build
@@ -40,7 +42,9 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: ebconfig
-          path: .
+          path: |
+              frontend/.elasticbeanstalk/config.yml
+              frontend/Dockerrun.aws.json
       - run: |
           sed -i='' "s/<AWS_ACCOUNT_ID>/$AWS_ACCOUNT_ID/"
           Dockerrun.aws.json
