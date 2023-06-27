@@ -1,8 +1,8 @@
 branch-defaults:
   default:
-    environment: backend
+    environment: conchayoro-frontend
 environment-defaults:
-  backend:
+  conchayoro-frontend:
     branch: null
     repository: null
 global:
